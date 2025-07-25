@@ -23,7 +23,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             bat """
                 echo %PASSWORD% | docker login -u %USERNAME% --password-stdin
-                docker push rajeshwari.mercu/maven-hello-world:latest
+                docker push rajeshwari.mercu/maven-hello-world
             """
             }
          }
