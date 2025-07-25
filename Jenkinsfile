@@ -7,10 +7,10 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                git credentialsId: 'github_java', url: 'https://github.com/goelvijay/MavenHelloWorld.git'
-            }
-        }
+    steps {
+        git credentialsId: 'dockerhub-creds', url: 'https://github.com/raji-jay/maven-hello-docker.git'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
