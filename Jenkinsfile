@@ -14,19 +14,19 @@ pipeline {
 
         stage('Build Docker Image') {
     steps {
-        docker build -t rajijay/maven-hello-world:latest
+         bat 'docker build -t rajijay/maven-hello-world:latest .'
     }
 }
 
         stage('Push to Docker Hub') {
             steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-            bat """
-                echo %PASSWORD% | docker login -u %USERNAME% --password-stdin
-                docker push rajijay/maven-hello-world:latest
-            """
+                withCredentials([string(credentialsId: 'dockerhub-password', variable: 'DOCKERHUB_PASSWORD')]) {
+                    bat '''
+                        echo %DOCKERHUB_PASSWORD% | docker login -u rajijay --password-stdin
+                        docker push rajijay/maven-hello-world:latest
+                    '''
+                }
             }
-         }
         }
 
         stage('Clean Up') {
