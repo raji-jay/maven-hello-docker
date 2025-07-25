@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
     steps {
-        git credentialsId: 'dockerhub-creds', url: 'https://github.com/raji-jay/maven-hello-docker.git'
+        git credentialsId: 'dockerhub-creds', url: 'https://github.com/raji-jay/maven-hello-docker.git', branch: 'main'
     }
 }
 
@@ -29,7 +29,7 @@ pipeline {
 
         stage('Clean Up') {
             steps {
-                bat 'docker rmi %IMAGE_NAME%'
+                bat 'docker rm %IMAGE_NAME%'
             }
         }
     }
