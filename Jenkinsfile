@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentialsId: 'dockerhub-creds', url: 'https://github.com/raji-jay/maven-hello-docker.git', branch: 'main'
+                git credentialsId: 'dockerhub-creds1', url: 'https://github.com/raji-jay/maven-hello-docker.git', branch: 'main'
             }
         }
 
