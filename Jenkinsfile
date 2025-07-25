@@ -13,17 +13,17 @@ pipeline {
 }
 
         stage('Build Docker Image') {
-            steps {
-                bat "docker build -t %IMAGE_NAME% ."
-            }
-        }
+    steps {
+        bat 'docker build -t rajeshwari.mercu/maven-hello-world:latest .'
+    }
+}
 
         stage('Push to Docker Hub') {
             steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             bat """
                 echo %PASSWORD% | docker login -u %USERNAME% --password-stdin
-                docker push rajeshwari.mercu/maven-hello-world
+                docker push rajeshwari.mercu/maven-hello-world:latest
             """
             }
          }
