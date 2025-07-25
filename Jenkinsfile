@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build Docker Image') {
     steps {
-        bat 'docker build -t rajeshwari.mercu/maven-hello-world:latest .'
+        docker build -t rajijay/maven-hello-world:latest .
     }
 }
 
@@ -23,7 +23,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             bat """
                 echo %PASSWORD% | docker login -u %USERNAME% --password-stdin
-                docker push rajeshwari.mercu/maven-hello-world:latest
+                docker push rajijay/maven-hello-world:latest
             """
             }
          }
