@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build Docker Image') {
     steps {
-        docker build -t rajijay/maven-hello-world:latest .
+        docker build -t rajijay/maven-hello-world:latest
     }
 }
 
