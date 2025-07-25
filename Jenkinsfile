@@ -20,12 +20,12 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhub-password', variable: 'DOCKERHUB_PASSWORD')]) {
-                    bat '''
-                        echo %DOCKERHUB_PASSWORD% | docker login -u rajijay --password-stdin
-                        docker push rajijay/maven-hello-world:latest
-                    '''
-                }
+               withCredentials([string(credentialsId: 'dockerhub-password', variable: 'DOCKERHUB_PASSWORD')]) {
+    bat """
+        echo %DOCKERHUB_PASSWORD% | docker login -u rajijay --password-stdin
+        docker push rajijay/maven-hello-world:latest
+    """
+}
             }
         }
 
