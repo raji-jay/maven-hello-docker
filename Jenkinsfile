@@ -20,11 +20,13 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    bat 'echo %PASSWORD% | docker login -u %USERNAME% --password-stdin'
-                    bat 'docker push %DOCKER_IMAGE%'
-                }
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            bat """
+                echo %PASSWORD% | docker login -u %USERNAME% --password-stdin
+                docker push rajeshwari.mercu/maven-hello-world:latest
+            """
             }
+         }
         }
 
         stage('Clean Up') {
