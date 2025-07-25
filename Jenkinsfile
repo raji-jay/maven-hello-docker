@@ -21,7 +21,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'raji-jay',        
+                    credentialsId: 'rajeshwarishanmuga031',        
                     usernameVariable: 'DOCKER_USERNAME',
                     passwordVariable: 'DOCKER_PASSWORD'
                 )]) {
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Clean Up') {
             steps {
-                // This removes the *image*, not container (rm is for containers)
+               
                 bat "docker rmi %IMAGE_NAME%"
             }
         }
